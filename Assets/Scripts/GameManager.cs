@@ -12,11 +12,25 @@ public class GameManager : MonoBehaviour
 	[SerializeField] private GameObject _obstaclePrefab;
 	
 	[SerializeField] private GameObject _tilePrefab;
+
+	[SerializeField] private GameObject _playerPrefab;
+
+	[SerializeField] private GameObject _enemyPrefab;
+
+	public GameObject[] enemyArray;
 	
 	private Grid _Grid;
+
+
+	
+
 	public void Start()
 	{
+
+		enemyFind();
 		SpawnObstacles();
+		SpawnPlayer();
+		SpawnEnemies();
 
 		//Setting the _cam to main camera
 		_cam = Camera.main;
@@ -26,18 +40,57 @@ public class GameManager : MonoBehaviour
 		_Grid = new Grid(30, 30, _tilePrefab);
 		//Updating the scan
 		AstarPath.active.Scan();
+
+
+		if(enemyArray.Length == 0)
+         {
+            enemyArray = GameObject.FindGameObjectsWithTag("Enemy");
+         }
+		
     }
 
 
 	private void SpawnObstacles()
 	{
-		for(int i = 0; i < 18; i++ ){
+		for(int i = 0; i < 20; i++ ){
 
 		Instantiate(_obstaclePrefab, RandomSpawnLocation(), Quaternion.identity);
 			
 
 		}
 	}
+
+	public void SpawnPlayer()
+	{
+				
+		Instantiate(_playerPrefab, RandomSpawnLocation(), Quaternion.identity);
+	}
+
+
+	public void SpawnEnemies()
+	{
+		for(int i = 0; i < 2; i++ ){
+
+		Instantiate(_enemyPrefab, RandomSpawnLocation(), Quaternion.identity);
+			
+
+		}
+	}
+
+	
+
+
+	void enemyFind()
+    {
+
+       foreach (GameObject _enemyPrefab in enemyArray)
+       {
+         _enemyPrefab.GetComponent<AIDestinationSetter>().target = GameObject.Find("Player(Clone)").transform;
+
+       }
+      UpdatePathfinding();
+
+    }
 
 
 	private Vector3 RandomSpawnLocation(){
