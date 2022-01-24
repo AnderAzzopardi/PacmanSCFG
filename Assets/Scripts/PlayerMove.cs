@@ -11,6 +11,8 @@ public class PlayerMove : MonoBehaviour
     float vertical;
     public GameObject player;
 
+       
+
 
     public float runSpeed = 20.0f;
 
@@ -25,6 +27,8 @@ public class PlayerMove : MonoBehaviour
     {
         horizontal = Input.GetAxisRaw("Horizontal");
         vertical = Input.GetAxisRaw("Vertical"); 
+
+    
     }
 
     private void FixedUpdate()
