@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
     private IAstarAI[] _ais;
 
 	[SerializeField] private GameObject _obstaclePrefab;
+
+	[SerializeField] private GameObject _scorePrefab;
 	
 	[SerializeField] private GameObject _tilePrefab;
 
@@ -34,6 +36,7 @@ public class GameManager : MonoBehaviour
 
 		
 		SpawnObstacles();
+		SpawnScore();
 		//SpawnPlayer();
 		//SpawnEnemies();
 
@@ -113,6 +116,16 @@ public class GameManager : MonoBehaviour
 
 		}
 	}
+
+	private void SpawnScore()
+	{
+		for(int i = 0; i < 10; i++ ){
+
+		Instantiate(_scorePrefab, RandomSpawnLocation(), Quaternion.identity);
+			
+
+		}
+	}
 /*
 	public void SpawnPlayer()
 	{
@@ -181,7 +194,7 @@ public class GameManager : MonoBehaviour
       {
          foreach(GameObject _enemyPrefab in enemyArray)
         {
-          _enemyPrefab.GetComponent<AIPath>().maxSpeed = 20;
+          _enemyPrefab.GetComponent<AIPath>().speed = 7;
         }
       }
     }

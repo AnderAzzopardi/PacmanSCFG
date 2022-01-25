@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Obstacle
   - Enemy
+  - Score
   layers:
   - Default
   - TransparentFX
@@ -13,9 +14,9 @@ TagManager:
   - Tiles
   - Water
   - UI
+  - Score
   - Obstacles
   - Enemy
-  - 
   - 
   - 
   - 
