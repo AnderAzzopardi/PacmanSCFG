@@ -9,6 +9,9 @@ public class MainMenu : MonoBehaviour
     public bool medium = false;
     public bool hard = false;
 
+    public bool tutorial = false;
+    public bool back = false;
+
 
     public void EasyBTN()
     {
@@ -26,6 +29,16 @@ public class MainMenu : MonoBehaviour
     {
         hard = true;
         SceneManager.LoadScene(1);
+    }
+
+    public void TutorialBTN()
+    {
+       SceneManager.LoadScene(2);
+    }
+
+    public void BackBTN()
+    {
+       SceneManager.LoadScene(0);
     }
 
 

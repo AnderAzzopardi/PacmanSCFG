@@ -70,6 +70,31 @@ public class GameManager : MonoBehaviour
 
     }
 
+	  void MenuDifficult()
+    {
+      if(menu.easy == true)
+      {
+        foreach(GameObject _enemyPrefab in enemyArray)
+        {
+          _enemyPrefab.GetComponent<AIPath>().maxSpeed = 4;
+        }
+      }
+      if(menu.medium == true)
+      {
+         foreach(GameObject _enemyPrefab in enemyArray)
+        {
+          _enemyPrefab.GetComponent<AIPath>().maxSpeed = 6;
+        }
+      }
+      if(menu.hard == true)
+      {
+         foreach(GameObject _enemyPrefab in enemyArray)
+        {
+          _enemyPrefab.GetComponent<AIPath>().maxSpeed = 20;
+        }
+      }
+    }
+
 	void Update()
 	{
 		if (health > 3)
@@ -174,30 +199,7 @@ public class GameManager : MonoBehaviour
 
 
 
-	  void MenuDifficult()
-    {
-      if(menu.easy == true)
-      {
-        foreach(GameObject _enemyPrefab in enemyArray)
-        {
-          _enemyPrefab.GetComponent<AIPath>().speed = 4;
-        }
-      }
-      if(menu.medium == true)
-      {
-         foreach(GameObject _enemyPrefab in enemyArray)
-        {
-          _enemyPrefab.GetComponent<AIPath>().speed = 6;
-        }
-      }
-      if(menu.hard == true)
-      {
-         foreach(GameObject _enemyPrefab in enemyArray)
-        {
-          _enemyPrefab.GetComponent<AIPath>().speed = 7;
-        }
-      }
-    }
+	
 
 
 }
