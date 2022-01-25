@@ -10,23 +10,23 @@ public class GameManager : MonoBehaviour
     private Camera _cam;
     private IAstarAI[] _ais;
 
-	[SerializeField] private GameObject _obstaclePrefab;
-
-	[SerializeField] private GameObject _scorePrefab;
+	public GameObject _obstaclePrefab;
 	
-	[SerializeField] private GameObject _tilePrefab;
+	public GameObject _scorePrefab;
+	
+	public GameObject _tilePrefab;
 
-	[SerializeField] private GameObject _playerPrefab;
+	public GameObject _playerPrefab;
 
-	[SerializeField] private GameObject _enemyPrefab;
+	public GameObject _enemyPrefab;
 
 	public GameObject[] enemyArray;
 	
-	private Grid _Grid;
+	public Grid _Grid;
 
 	MainMenu menu;
 
-	public GameObject heart1, heart2, heart3, gameOver;
+	public GameObject heart1, heart2, heart3;
 	public static int health;
 
 	
@@ -34,9 +34,9 @@ public class GameManager : MonoBehaviour
 	public void Start()
 	{
 
-		
-		SpawnObstacles();
 		SpawnScore();
+		SpawnObstacles();
+		
 		//SpawnPlayer();
 		//SpawnEnemies();
 
@@ -49,10 +49,10 @@ public class GameManager : MonoBehaviour
 		_Grid = new Grid(30, 30, _tilePrefab);
 
 		health = 3;
-		heart1.gameObject.SetActive (true);
-		heart2.gameObject.SetActive (true);
-		heart3.gameObject.SetActive (true);
-	//	gameOver.gameObject.SetActive (false);
+		heart1.SetActive (true);
+		heart2.SetActive (true);
+		heart3.SetActive (true);
+	//	gameOver.SetActive (false);
 
 		
 
@@ -78,42 +78,30 @@ public class GameManager : MonoBehaviour
 
 		switch (health){
 			case 3:
-			heart1.gameObject.SetActive(true);
-			heart2.gameObject.SetActive(true);
-			heart3.gameObject.SetActive(true);
+			heart1.SetActive(true);
+			heart2.SetActive(true);
+			heart3.SetActive(true);
 			break;
 
 			case 2:
-			heart1.gameObject.SetActive(true);
-			heart2.gameObject.SetActive(true);
-			heart3.gameObject.SetActive(false);
+			heart1.SetActive(true);
+			heart2.SetActive(true);
+			heart3.SetActive(false);
 			break;
 
 			case 1:
-			heart1.gameObject.SetActive(true);
-			heart2.gameObject.SetActive(false);
-			heart3.gameObject.SetActive(false);
+			heart1.SetActive(true);
+			heart2.SetActive(false);
+			heart3.SetActive(false);
 			break;
 
 			case 0:
-			heart1.gameObject.SetActive(false);
-			heart2.gameObject.SetActive(false);
-			heart3.gameObject.SetActive(false);
+			heart1.SetActive(false);
+			heart2.SetActive(false);
+			heart3.SetActive(false);
 			SceneManager.LoadScene(0);
 			
 			break;
-		}
-	}
-
-
-
-	private void SpawnObstacles()
-	{
-		for(int i = 0; i < 20; i++ ){
-
-		Instantiate(_obstaclePrefab, RandomSpawnLocation(), Quaternion.identity);
-			
-
 		}
 	}
 
@@ -126,6 +114,18 @@ public class GameManager : MonoBehaviour
 
 		}
 	}
+
+	private void SpawnObstacles()
+	{
+		for(int i = 0; i < 20; i++ ){
+
+		Instantiate(_obstaclePrefab, RandomSpawnLocation(), Quaternion.identity);
+			
+
+		}
+	}
+
+	
 /*
 	public void SpawnPlayer()
 	{
